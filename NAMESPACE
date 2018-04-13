@@ -3,6 +3,7 @@
 S3method(nonull,default)
 S3method(nonull,list)
 S3method(select,mrgmod)
+export(mrgoptim)
 export(select_par)
 export(select_runs)
 export(sens_covset)
