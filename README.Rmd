@@ -27,7 +27,7 @@ install_github("mhismail/mrgsolvetk",ref="mrgoptim")
 
 
 # Examples
-```{r}
+```{r warning=FALSE}
 library(ggplot2)
 library(dplyr)
 library(mrgsolve)
@@ -170,7 +170,7 @@ head(data)
 Plot the data to get an idea of the profiles to be fit. cmt 1 is plasma concentration
 data and cmt 2 is PD data
 
-```{r}
+```{r warning=FALSE}
 ggplot(data,aes(x=time,y=dv,color=as.factor(ID)))+
   geom_point()+
   geom_line()+
@@ -225,7 +225,7 @@ the **PK**, **PD**, **varPK**, and **varPD**  outputs, respectively.
 
 Let's check how the initial parameter values fit the data. 
 
-```{r}
+```{r warning=FALSE}
 out <- mod%>%
   data_set(data)%>%
   obsonly()%>%
@@ -274,7 +274,7 @@ print(fit)
 
 ```
 Lets check how the optimized parameters fit the data. 
-```{r}
+```{r warning=FALSE}
 out_fit <- mod%>%
   param(fit$par)%>%
   data_set(data)%>%

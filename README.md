@@ -26,11 +26,6 @@ Examples
 library(ggplot2)
 library(dplyr)
 library(mrgsolve)
-```
-
-    . Warning: package 'mrgsolve' was built under R version 3.4.3
-
-``` r
 library(mrgsolvetk)
 
 theme_set(theme_bw())
@@ -69,16 +64,16 @@ out
     . # A tibble: 1,930 x 8
     .       ID  time    CP    CL    VC   KA1 name         value
     .    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <chr>        <dbl>
-    .  1    1. 0.    0.     1.81  46.6  1.12 multivariate    1.
-    .  2    1. 0.250 0.520  1.81  46.6  1.12 multivariate    1.
-    .  3    1. 0.500 0.908  1.81  46.6  1.12 multivariate    1.
-    .  4    1. 0.750 1.20   1.81  46.6  1.12 multivariate    1.
-    .  5    1. 1.00  1.41   1.81  46.6  1.12 multivariate    1.
-    .  6    1. 1.25  1.57   1.81  46.6  1.12 multivariate    1.
-    .  7    1. 1.50  1.68   1.81  46.6  1.12 multivariate    1.
-    .  8    1. 1.75  1.76   1.81  46.6  1.12 multivariate    1.
-    .  9    1. 2.00  1.82   1.81  46.6  1.12 multivariate    1.
-    . 10    1. 2.25  1.86   1.81  46.6  1.12 multivariate    1.
+    .  1    1. 0.     0.    2.26  10.0 0.548 multivariate    1.
+    .  2    1. 0.250  1.24  2.26  10.0 0.548 multivariate    1.
+    .  3    1. 0.500  2.26  2.26  10.0 0.548 multivariate    1.
+    .  4    1. 0.750  3.08  2.26  10.0 0.548 multivariate    1.
+    .  5    1. 1.00   3.74  2.26  10.0 0.548 multivariate    1.
+    .  6    1. 1.25   4.25  2.26  10.0 0.548 multivariate    1.
+    .  7    1. 1.50   4.64  2.26  10.0 0.548 multivariate    1.
+    .  8    1. 1.75   4.93  2.26  10.0 0.548 multivariate    1.
+    .  9    1. 2.00   5.14  2.26  10.0 0.548 multivariate    1.
+    . 10    1. 2.25   5.27  2.26  10.0 0.548 multivariate    1.
     . # ... with 1,920 more rows
 
 ``` r
@@ -198,16 +193,16 @@ out
     . # A tibble: 19,300 x 7
     .       ID  time    CP    CL    VC name         value
     .    <dbl> <dbl> <dbl> <dbl> <dbl> <chr>        <dbl>
-    .  1    1. 0.    0.     1.60  68.0 multivariate    1.
-    .  2    1. 0.250 0.324  1.60  68.0 multivariate    1.
-    .  3    1. 0.500 0.575  1.60  68.0 multivariate    1.
-    .  4    1. 0.750 0.768  1.60  68.0 multivariate    1.
-    .  5    1. 1.00  0.916  1.60  68.0 multivariate    1.
-    .  6    1. 1.25  1.03   1.60  68.0 multivariate    1.
-    .  7    1. 1.50  1.12   1.60  68.0 multivariate    1.
-    .  8    1. 1.75  1.18   1.60  68.0 multivariate    1.
-    .  9    1. 2.00  1.23   1.60  68.0 multivariate    1.
-    . 10    1. 2.25  1.27   1.60  68.0 multivariate    1.
+    .  1    1. 0.     0.    2.89  15.8 multivariate    1.
+    .  2    1. 0.250  1.37  2.89  15.8 multivariate    1.
+    .  3    1. 0.500  2.38  2.89  15.8 multivariate    1.
+    .  4    1. 0.750  3.10  2.89  15.8 multivariate    1.
+    .  5    1. 1.00   3.61  2.89  15.8 multivariate    1.
+    .  6    1. 1.25   3.95  2.89  15.8 multivariate    1.
+    .  7    1. 1.50   4.17  2.89  15.8 multivariate    1.
+    .  8    1. 1.75   4.29  2.89  15.8 multivariate    1.
+    .  9    1. 2.00   4.33  2.89  15.8 multivariate    1.
+    . 10    1. 2.25   4.32  2.89  15.8 multivariate    1.
     . # ... with 19,290 more rows
 
 ``` r
@@ -217,16 +212,16 @@ distinct(out,ID,CL,VC)
     . # A tibble: 100 x 3
     .       ID    CL    VC
     .    <dbl> <dbl> <dbl>
-    .  1    1.  1.60  68.0
-    .  2    2.  1.70  70.3
-    .  3    3.  3.29  55.0
-    .  4    4.  1.65  52.5
-    .  5    5.  2.39  57.4
-    .  6    6.  1.01  40.0
-    .  7    7.  1.07  77.8
-    .  8    8.  3.36 100. 
-    .  9    9.  1.09  68.4
-    . 10   10.  3.40  61.5
+    .  1    1.  2.89  15.8
+    .  2    2.  2.54  65.0
+    .  3    3.  2.12  22.2
+    .  4    4.  1.87  63.1
+    .  5    5.  3.28  59.3
+    .  6    6.  3.18  32.4
+    .  7    7.  2.85  78.8
+    .  8    8.  2.17  34.3
+    .  9    9.  2.98  23.4
+    . 10   10.  1.50  62.2
     . # ... with 90 more rows
 
 Maximum Likelihood Parameter Optimization
@@ -270,10 +265,6 @@ ggplot(data,aes(x=time,y=dv,color=as.factor(ID)))+
   facet_wrap("cmt")+
   guides(color=F)
 ```
-
-    . Warning: Removed 5 rows containing missing values (geom_point).
-
-    . Warning: Removed 5 rows containing missing values (geom_path).
 
 ![](inst/maintenance/img/README-unnamed-chunk-16-1.png)
 
@@ -335,8 +326,6 @@ ggplot(out,aes(x=time,y=PK,color=as.factor(ID)))+
   geom_point(data=filter(data,cmt==1),aes(y=dv))+
   guides(color=F)
 ```
-
-    . Warning: Removed 5 rows containing missing values (geom_point).
 
 ![](inst/maintenance/img/README-unnamed-chunk-18-1.png)
 
@@ -610,8 +599,6 @@ ggplot(out_fit,aes(x=time,y=PK,color=as.factor(ID)))+
   geom_point(data=filter(data,cmt==1),aes(y=dv))+
   guides(color=F)
 ```
-
-    . Warning: Removed 5 rows containing missing values (geom_point).
 
 ![](inst/maintenance/img/README-unnamed-chunk-21-1.png)
 
