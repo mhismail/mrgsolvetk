@@ -14,6 +14,17 @@ knitr::opts_chunk$set(comment='.', message=FALSE,
 # mrgsolvetk
 A toolkit to be used with `mrgsolve`
 
+# Installation
+```{r, eval = FALSE}
+library(devtools)
+install_github("mrgsolve/mrgsolvetk")
+```
+To install branch with `mrgoptim` function, until merged with mrgsolve/master:
+```{r, eval = FALSE}
+library(devtools)
+install_github("mhismail/mrgsolvetk",ref="mrgoptim")
+```
+
 
 # Examples
 ```{r}
@@ -132,6 +143,147 @@ out
 distinct(out,ID,CL,VC)
 
 ```
+## Maximum Likelihood Parameter Optimization
+
+### `mrgoptim`
+This example shows a simultaneous fit of PK and PD data from five dose levels.
+
+#### Data structure
+The data to be fit is an mrgsolve dataset. Required columns for fitting are:
+
+- ID	
+- time	
+- evid
+- cmt
+- amt
+- dv	
 
 
-`
+```{r}
+data <-  read.csv("inst/maintenance/data/optim-example.csv")
+
+head(data)
+```
+
+Plot the data to get an idea of the profiles to be fit. cmt 1 is plasma concentration
+data and cmt 2 is PD data
+
+```{r}
+ggplot(data,aes(x=time,y=dv,color=as.factor(ID)))+
+  geom_point()+
+  geom_line()+
+  facet_wrap("cmt")
+```
+
+The following model will be fit to these data:
+
+- PK: 2 compartment model
+- PD: Emax model with baseline
+- Proportional error models for both PK and PD
+
+```{r}
+code<-"
+$PROB 2 cmt PK Model, Emac PD model
+
+$PARAM
+CL=10
+VC = 20
+VP = 20
+Q=20
+Emax = 60
+BL = 50
+EC50 = 10
+gamma =1
+sigma1 = 0.1
+sigma2 = 0.1
+
+$CMT X1 X2 
+
+$ODE
+dxdt_X1 = -(Q+CL)/VC*X1+Q/VP*X2;
+dxdt_X2 = Q/VC*X1-Q/VP*X2;
+
+$TABLE
+double PK = X1/VC;
+double varPK = (PK*sigma1)*(PK*sigma1);
+
+
+double PD = BL-(pow(PK,gamma)*Emax)/(pow(PK,gamma)+pow(EC50,gamma));
+double varPD = (PD*sigma2)*(PD*sigma2);
+
+
+$CAPTURE PK varPK PD varPD"
+
+mod <- mcode("2cmtPK-Emax",code)
+```
+
+Here, the plasma concentrations, response, and variances were captured 
+the PK, PD, varPK, and varPD  outputs, respectively.
+
+Let's check how the initial parameter values fit the data. 
+
+```{r}
+out <- mod%>%
+  data_set(data)%>%
+  obsonly()%>%
+  mrgsim()%>%
+  as.data.frame()
+
+ggplot(out,aes(x=time,y=PK,color=as.factor(ID)))+
+  geom_line()+
+  geom_point(data=filter(data,cmt==1),aes(y=dv))
+
+ggplot(out,aes(x=time,y=PD,color=as.factor(ID)))+
+  geom_line()+
+  geom_point(data=filter(data,cmt==2),aes(y=dv))
+
+```
+Not terrible, should be good enough for initial estimates.
+
+Now let's use `mrgoptim` to optimize the parameters and return parameter values and precision.
+The `input`, `output`,and `var` arguments map the observed values to the output compartments and variances of the outputs. Since compartment `1` in the input dataset corresponds to plasma concentration data, which is the `PK` column in the output, they both need to be the first value in their respective vectors. Similarly, since `varPK` corresponds to the variance of the `PK` data, it is the first value in the `var` argument vector.
+
+```{r echo=T, results='hide'}
+fit<- mod%>%
+  data_set(data)%>%
+  mrgoptim(input=c(1,2),
+           output=c("PK","PD"),
+           var= c("varPK","varPD"),
+           prms=c("CL",
+             "VC",
+             "VP",
+             "Q",
+             "Emax",
+             "BL",
+             "EC50",
+             "gamma"),
+           v_prms=c("sigma1","sigma2"),
+           method="newuoa")
+
+```
+The function returns a list with some information about the optimization, the final objective function value (-2LL), final parameter estimates, covariance and correlation matrices, CV percent, and output dataset.
+
+```{r}
+print(fit)
+
+```
+Lets check how the optimized parameters fit the data. 
+```{r}
+out_fit <- mod%>%
+  param(fit$par)%>%
+  data_set(data)%>%
+  obsonly()%>%
+  mrgsim()%>%
+  as.data.frame()
+
+
+ggplot(out_fit,aes(x=time,y=PK,color=as.factor(ID)))+
+  geom_line()+
+  geom_point(data=filter(data,cmt==1),aes(y=dv))
+
+ggplot(out_fit,aes(x=time,y=PD,color=as.factor(ID)))+
+  geom_line()+
+  geom_point(data=filter(data,cmt==2),aes(y=dv))
+
+
+```

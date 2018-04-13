@@ -24,7 +24,7 @@ ML_optim <- function(params,mod,output,var,input){
   
   predicted<- reformat(predicted,input,output)
   
-  print(ML_obj_fun(predicted$dv,predicted[,5],predicted[,5+length(output)]))
+  ML_obj_fun(predicted$dv,predicted[,5],predicted[,5+length(output)])
 
 }
 
