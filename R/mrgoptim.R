@@ -88,7 +88,7 @@ reformat<-function(predicted,input,output){
 
 
 ##' Fit a model to data using maximum likelihood objective function
-##' with newuoa or optim.
+##' with newuoa or optim
 ##' 
 ##' @param mod a model object
 ##' @param input a numeric vector containing observation compartments in data_set to be fit
@@ -240,7 +240,9 @@ mrgoptim <- function(mod,
   }
   
   fitted_data<- get_preds(mod,params,c(output,var))
-  fit[[1+restarts]]$fitted_data<- reformat(fitted_data,input,output)
+  names(fitted_data)[c(5,5+length(output))]<- c("pred","var")
+  
+  fit[[1+restarts]]$fitted_data<- reformat(fitted_data,input,output)[,c(1:5,5+length(output))]
   fit[[1+restarts]]$par<-10^fit[[1+restarts]]$par
   
   return(unclass(fit[[1+restarts]]))

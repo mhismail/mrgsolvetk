@@ -3,7 +3,7 @@
 \name{mrgoptim}
 \alias{mrgoptim}
 \title{Fit a model to data using maximum likelihood objective function
-with newuoa or optim.}
+with newuoa or optim}
 \usage{
 mrgoptim(mod, input, output, var, prms, v_prms, cov = T, restarts = 0,
   method = "newuoa", options = list(maxit = 10000))
@@ -31,5 +31,5 @@ mrgoptim(mod, input, output, var, prms, v_prms, cov = T, restarts = 0,
 }
 \description{
 Fit a model to data using maximum likelihood objective function
-with newuoa or optim.
+with newuoa or optim
 }
