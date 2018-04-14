@@ -64,16 +64,16 @@ out
     . # A tibble: 1,930 x 8
     .       ID  time    CP    CL    VC   KA1 name         value
     .    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <chr>        <dbl>
-    .  1    1. 0.     0.    2.26  10.0 0.548 multivariate    1.
-    .  2    1. 0.250  1.24  2.26  10.0 0.548 multivariate    1.
-    .  3    1. 0.500  2.26  2.26  10.0 0.548 multivariate    1.
-    .  4    1. 0.750  3.08  2.26  10.0 0.548 multivariate    1.
-    .  5    1. 1.00   3.74  2.26  10.0 0.548 multivariate    1.
-    .  6    1. 1.25   4.25  2.26  10.0 0.548 multivariate    1.
-    .  7    1. 1.50   4.64  2.26  10.0 0.548 multivariate    1.
-    .  8    1. 1.75   4.93  2.26  10.0 0.548 multivariate    1.
-    .  9    1. 2.00   5.14  2.26  10.0 0.548 multivariate    1.
-    . 10    1. 2.25   5.27  2.26  10.0 0.548 multivariate    1.
+    .  1    1. 0.    0.     2.42  60.0 0.255 multivariate    1.
+    .  2    1. 0.250 0.102  2.42  60.0 0.255 multivariate    1.
+    .  3    1. 0.500 0.197  2.42  60.0 0.255 multivariate    1.
+    .  4    1. 0.750 0.285  2.42  60.0 0.255 multivariate    1.
+    .  5    1. 1.00  0.367  2.42  60.0 0.255 multivariate    1.
+    .  6    1. 1.25  0.443  2.42  60.0 0.255 multivariate    1.
+    .  7    1. 1.50  0.513  2.42  60.0 0.255 multivariate    1.
+    .  8    1. 1.75  0.577  2.42  60.0 0.255 multivariate    1.
+    .  9    1. 2.00  0.637  2.42  60.0 0.255 multivariate    1.
+    . 10    1. 2.25  0.692  2.42  60.0 0.255 multivariate    1.
     . # ... with 1,920 more rows
 
 ``` r
@@ -193,16 +193,16 @@ out
     . # A tibble: 19,300 x 7
     .       ID  time    CP    CL    VC name         value
     .    <dbl> <dbl> <dbl> <dbl> <dbl> <chr>        <dbl>
-    .  1    1. 0.     0.    2.89  15.8 multivariate    1.
-    .  2    1. 0.250  1.37  2.89  15.8 multivariate    1.
-    .  3    1. 0.500  2.38  2.89  15.8 multivariate    1.
-    .  4    1. 0.750  3.10  2.89  15.8 multivariate    1.
-    .  5    1. 1.00   3.61  2.89  15.8 multivariate    1.
-    .  6    1. 1.25   3.95  2.89  15.8 multivariate    1.
-    .  7    1. 1.50   4.17  2.89  15.8 multivariate    1.
-    .  8    1. 1.75   4.29  2.89  15.8 multivariate    1.
-    .  9    1. 2.00   4.33  2.89  15.8 multivariate    1.
-    . 10    1. 2.25   4.32  2.89  15.8 multivariate    1.
+    .  1    1. 0.    0.     2.90  30.5 multivariate    1.
+    .  2    1. 0.250 0.716  2.90  30.5 multivariate    1.
+    .  3    1. 0.500 1.26   2.90  30.5 multivariate    1.
+    .  4    1. 0.750 1.66   2.90  30.5 multivariate    1.
+    .  5    1. 1.00  1.96   2.90  30.5 multivariate    1.
+    .  6    1. 1.25  2.18   2.90  30.5 multivariate    1.
+    .  7    1. 1.50  2.33   2.90  30.5 multivariate    1.
+    .  8    1. 1.75  2.44   2.90  30.5 multivariate    1.
+    .  9    1. 2.00  2.50   2.90  30.5 multivariate    1.
+    . 10    1. 2.25  2.54   2.90  30.5 multivariate    1.
     . # ... with 19,290 more rows
 
 ``` r
@@ -212,16 +212,16 @@ distinct(out,ID,CL,VC)
     . # A tibble: 100 x 3
     .       ID    CL    VC
     .    <dbl> <dbl> <dbl>
-    .  1    1.  2.89  15.8
-    .  2    2.  2.54  65.0
-    .  3    3.  2.12  22.2
-    .  4    4.  1.87  63.1
-    .  5    5.  3.28  59.3
-    .  6    6.  3.18  32.4
-    .  7    7.  2.85  78.8
-    .  8    8.  2.17  34.3
-    .  9    9.  2.98  23.4
-    . 10   10.  1.50  62.2
+    .  1    1.  2.90  30.5
+    .  2    2.  2.43  24.7
+    .  3    3.  1.28  21.8
+    .  4    4.  1.61  47.6
+    .  5    5.  1.73  46.5
+    .  6    6.  1.68  64.7
+    .  7    7.  1.04  39.6
+    .  8    8.  1.18  57.6
+    .  9    9.  3.39  49.4
+    . 10   10.  2.62  45.9
     . # ... with 90 more rows
 
 Maximum Likelihood Parameter Optimization
@@ -276,7 +276,7 @@ The following model will be fit to these data:
 
 ``` r
 code<-"
-$PROB 2 cmt PK Model, Emac PD model
+$PROB 2 cmt PK Model, Emax PD model
 
 $PARAM
 CL=10
@@ -297,15 +297,12 @@ dxdt_X1 = -(Q+CL)/VC*X1+Q/VP*X2;
 dxdt_X2 = Q/VC*X1-Q/VP*X2;
 
 $TABLE
-double PK = X1/VC;
-double varPK = (PK*sigma1)*(PK*sigma1);
+capture PK = X1/VC;
+capture varPK = (PK*sigma1)*(PK*sigma1);
 
 
-double PD = BL-(pow(PK,gamma)*Emax)/(pow(PK,gamma)+pow(EC50,gamma));
-double varPD = (PD*sigma2)*(PD*sigma2);
-
-
-$CAPTURE PK varPK PD varPD"
+capture PD = BL-(pow(PK,gamma)*Emax)/(pow(PK,gamma)+pow(EC50,gamma));
+capture varPD = (PD*sigma2)*(PD*sigma2);"
 
 mod <- mcode("2cmtPK-Emax",code)
 ```

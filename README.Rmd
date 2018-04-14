@@ -186,7 +186,7 @@ The following model will be fit to these data:
 
 ```{r}
 code<-"
-$PROB 2 cmt PK Model, Emac PD model
+$PROB 2 cmt PK Model, Emax PD model
 
 $PARAM
 CL=10
@@ -207,15 +207,12 @@ dxdt_X1 = -(Q+CL)/VC*X1+Q/VP*X2;
 dxdt_X2 = Q/VC*X1-Q/VP*X2;
 
 $TABLE
-double PK = X1/VC;
-double varPK = (PK*sigma1)*(PK*sigma1);
+capture PK = X1/VC;
+capture varPK = (PK*sigma1)*(PK*sigma1);
 
 
-double PD = BL-(pow(PK,gamma)*Emax)/(pow(PK,gamma)+pow(EC50,gamma));
-double varPD = (PD*sigma2)*(PD*sigma2);
-
-
-$CAPTURE PK varPK PD varPD"
+capture PD = BL-(pow(PK,gamma)*Emax)/(pow(PK,gamma)+pow(EC50,gamma));
+capture varPD = (PD*sigma2)*(PD*sigma2);"
 
 mod <- mcode("2cmtPK-Emax",code)
 ```
